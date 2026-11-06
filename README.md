@@ -4,7 +4,11 @@
 
 Mohamed Rayan Barhdadi · Syed Talal Wasim · Juergen Gall · Erchin Serpedin · Hasan Kurban
 
-[Website](https://bmrayan.github.io/prv-perception/) · [Data](#data) · [Reproduce](#reproduce) · [Citation](#citation)
+<p>
+  <a href="https://bmrayan.github.io/prv-perception/"><img src="website/assets/website-logo.svg" alt="" width="18" height="18" align="absmiddle"> <strong>Website</strong></a> &middot;
+  <span><img src="website/assets/arxiv-logo.svg" alt="" width="18" height="18" align="absmiddle"> <strong>arXiv (coming soon)</strong></span> &middot;
+  <a href="https://huggingface.co/datasets/bmrayan/perception-not-reasoning"><img src="website/assets/huggingface-logo.svg" alt="" width="19" height="18" align="absmiddle"> <strong>Hugging Face</strong></a>
+</p>
 
 <img src="website/assets/teaser.png" alt="Scene information improves visual theory-of-mind performance." width="100%">
 
