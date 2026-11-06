@@ -29,9 +29,9 @@ python -m pip install -r requirements.txt
 
 ## Data
 
-Data and saved responses are distributed separately from this code. The public dataset is hosted at [bmrayan/perception-not-reasoning](https://huggingface.co/datasets/bmrayan/perception-not-reasoning). Its local copy is in `../hf-perception-not-reasoning/`. It contains the 1,000 original abstract probes, images, annotations, Croissant metadata, and saved evaluation bundles under `results/`.
+Download [the dataset and saved responses](https://huggingface.co/datasets/bmrayan/perception-not-reasoning) to `../hf-perception-not-reasoning/`. The release contains 1,000 abstract probes, images, annotations, Croissant metadata, and evaluation logs under `results/`.
 
-Scripts use that sibling directory by default. To use a downloaded copy elsewhere, set `PERCEPTION_DATA_DIR` to its absolute path. PowerShell: `$env:PERCEPTION_DATA_DIR="D:\datasets\perception"`; Linux/macOS: `export PERCEPTION_DATA_DIR=/path/to/perception`. No installation or copying into this repository is needed.
+Scripts read that directory by default. For another location, set `PERCEPTION_DATA_DIR` to its absolute path. PowerShell: `$env:PERCEPTION_DATA_DIR="D:\datasets\perception"`; Linux/macOS: `export PERCEPTION_DATA_DIR=/path/to/perception`.
 
 Obtain naturalistic source media from [MuMA-ToM](https://github.com/SCAI-JHU/MuMA-ToM) and the original MindPower release. These media are not redistributed. Place them under `../benchmark-data/MuMA-ToM/` and `../benchmark-data/MindPower/`, or set `PERCEPTION_BENCHMARK_DIR`. MuMA-ToM expects `questions.json`, `texts.json`, and `videos/`. MindPower preparation expects its original `ThreeDWorld/` and `VirtualHome/` directories. VirtualHome rendering additionally requires the original simulator and its Python source under `benchmark-data/external/virtualhome/`.
 
@@ -48,7 +48,7 @@ Outputs go to the external dataset's `results/reproduced/`. The significance scr
 
 ## Evaluate
 
-For fresh evaluations, set `OPENROUTER_API_KEY` in your environment.
+To run evaluations, set `OPENROUTER_API_KEY` in your environment.
 
 ```bash
 python evaluation/abstract2d/evaluate.py --phase phase1 --dry-run
@@ -85,7 +85,7 @@ Additional controls are in `evaluation/controls/`: `evaluate_positions.py`, `eva
 
 ## Results
 
-Reproduction preserves the saved scores. The printed paper tables and saved scores agree in 162 of 168 checked cells; six MindPower values differ by 0.1 percentage point. `results/reproduced/verification.json` lists them. The original Stage 1 permanence and color-change prompts explicitly include their expected answers; treat those items separately when interpreting visual competence. Full scaffolds contain more information than perceptual scaffolds. Model panels, baselines, and scoring rules must be reported with each comparison.
+The paper tables and saved scores agree in 162 of 168 checked cells. Six MindPower values differ by 0.1 percentage point; see `results/reproduced/verification.json`. The Stage 1 permanence and color-change prompts include their expected answers. Full scaffolds contain more information than perceptual scaffolds. Report the models, baseline, and scoring rule for each comparison.
 
 ## Layout
 
@@ -101,7 +101,7 @@ website/        Project page and presentation figures
 
 ## Paper
 
-The camera-ready PDF and manuscript source are kept outside this code repository. A public paper URL will be linked here when available. The first-page figure is retained above and on the website.
+The public paper link is pending. The repository excludes the PDF and manuscript source.
 
 ## Citation
 
@@ -115,7 +115,7 @@ The camera-ready PDF and manuscript source are kept outside this code repository
 }
 ```
 
-Please cite the paper and [star the repository](https://github.com/bmrayan/prv-perception) if you use this work.
+Cite the paper when using the code or data. [Star the repository](https://github.com/bmrayan/prv-perception).
 
 ## License and acknowledgments
 
