@@ -69,9 +69,12 @@
 <h2 class="title is-3 has-text-centered">Results</h2>
 <div class="content"><p>Full scaffolds exceed text-only scores on abstract false-belief tasks and MuMA-ToM. On MindPower, they improve scores but remain below text-only input. Automatic descriptions produce smaller gains or lower scores.</p></div>
 <figure class="paper-figure"><div class="results-explorer" id="results-explorer">
-<div class="results-toolbar"><label>Benchmark <select id="benchmark-select"><option value="muma">MuMA-ToM</option><option value="mindpower">MindPower</option><option value="abstract">Abstract false belief</option></select></label><label>View <select id="metric-select"><option value="score">Reported score</option><option value="gain">Change from visual-only</option></select></label></div>
-<fieldset class="condition-controls"><legend>Show conditions</legend><label><input checked="" type="checkbox" value="0"/> A - Visual-only</label><label><input checked="" type="checkbox" value="1"/> B<sub>a</sub> - Automatic</label><label><input checked="" type="checkbox" value="2"/> B<sub>p</sub> - Perceptual</label><label><input checked="" type="checkbox" value="3"/> B<sub>f</sub> - Full scaffold</label><label><input checked="" type="checkbox" value="4"/> C - Text-only</label></fieldset>
-<p aria-live="polite" class="chart-summary" id="chart-summary"></p><div aria-label="Condition scores" id="interactive-bars"></div><p aria-live="polite" class="chart-detail" id="chart-detail">Select a bar to inspect its score and change from visual-only.</p>
+<div class="dataset-tabs" role="group" aria-label="Dataset">
+<button type="button" data-dataset="muma" aria-pressed="true">MuMA-ToM</button>
+<button type="button" data-dataset="mindpower" aria-pressed="false">MindPower</button>
+<button type="button" data-dataset="abstract" aria-pressed="false">Abstract false belief</button>
+</div>
+<p aria-live="polite" class="chart-summary" id="chart-summary"></p><div aria-label="Condition scores" id="interactive-bars"></div>
 <details class="chart-table"><summary>View all reported values</summary><div class="table-container"><table class="table is-fullwidth"><caption>Seven-model means (%)</caption><thead><tr><th>Setting</th><th>A</th><th>B<sub>a</sub></th><th>B<sub>p</sub></th><th>B<sub>f</sub></th><th>C</th></tr></thead><tbody><tr><th>MuMA-ToM</th><td>44.7</td><td>47.4</td><td>Not defined</td><td>58.1</td><td>54.0</td></tr><tr><th>MindPower</th><td>19.1</td><td>18.3</td><td>24.1</td><td>27.3</td><td>33.0</td></tr><tr><th>Abstract false belief</th><td>73.9</td><td>75.7</td><td>88.8</td><td>98.4</td><td>94.5</td></tr></tbody></table></div></details>
 <noscript><p>Enable JavaScript to explore the chart, or open the table above to read every value.</p></noscript></div><figcaption>Seven-model means, plotted from the rounded values reported in Tables 3–5 and Section 4. A: visual-only; B<sub>a</sub>: automatic; B<sub>p</sub>: perceptual; B<sub>f</sub>: full scaffold; C: text-only. MuMA-ToM has no B<sub>p</sub> condition. MindPower uses a scenario-weighted layer-mean score; scores should be compared within each setting. <a href="https://github.com/bmrayan/prv-perception#paper">Results in the paper.</a></figcaption></figure>
 <div class="content" style="margin-top: 1.5rem;"><p>MindPower’s B<sub>f</sub> includes the reference reasoning chain. B<sub>p</sub> uses perceptual information and raises the mean score from 19.1 to 24.1.</p></div>
@@ -81,12 +84,6 @@
 <h2 class="title is-3 has-text-centered">Naturalistic Benchmarks</h2>
 <div class="content"><p>MuMA-ToM contains household videos. MindPower contains embodied scenarios in ThreeDWorld and VirtualHome.</p></div>
 <figure class="paper-figure"><a href="assets/naturalistic-benchmarks.png"><img alt="MuMA-ToM household scenes in the top row and MindPower embodied scenarios in the bottom row." height="791" loading="lazy" src="assets/naturalistic-benchmarks.png" width="2000"/></a><figcaption>Representative naturalistic inputs: MuMA-ToM above, MindPower below. Evaluations use eight frames per MuMA-ToM video and twelve-frame storyboards per MindPower scenario. <a href="https://github.com/bmrayan/prv-perception#paper">Figure 3 in the paper.</a></figcaption></figure>
-</div>
-</section><section class="section" id="resources" style="padding-top: 0;">
-<div class="container is-max-desktop content">
-<h2 class="title is-3">Code and Data</h2>
-<p>GitHub hosts the evaluation and analysis code. Hugging Face hosts the saved responses and 1,000 abstract probes across 20 templates.</p>
-<p><a href="https://github.com/bmrayan/prv-perception">Code repository</a>  ·  <a href="https://github.com/bmrayan/prv-perception#reproduce">Reproduction guide</a>  ·  <a href="https://huggingface.co/datasets/bmrayan/perception-not-reasoning">Abstract 2D data</a>  ·  <a href="https://github.com/bmrayan/prv-perception#results">Results and protocol</a></p>
 </div>
 </section>
 <section class="section" id="BibTeX" style="padding-top: 0;">
