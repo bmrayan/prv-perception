@@ -1,0 +1,1 @@
+{"_format":"sharded_json_array_v1","source":"v5_phase1_results.json","total_records":35000,"shards":["v5_phase1_results.part001.json","v5_phase1_results.part002.json","v5_phase1_results.part003.json"]}

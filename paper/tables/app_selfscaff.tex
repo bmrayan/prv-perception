@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Self-scaffold generate-then-reason baseline} (Stage~3 ablation subset on Abstract 2D panels). $A_\mathrm{self}$ asks the model to first describe the panels, then answer using its own description.}
+\label{tab:selfscaff_supp}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l ccc@{}}
+\toprule
+\textbf{Model} & \chipBa\,$A_\mathrm{self}$ & \chipA\,A & $\Delta$ \\
+\midrule
+GPT-4o~\cite{openai2024gpt4o}           & 77.6 & 76.4 & \up{+1.2} \\
+Gemini 2.5 Pro~\cite{google2025gemini}   & 14.6 & 71.8 & \dn{$-$57.2} \\
+Claude Sonnet 4~\cite{anthropic2025claude}  & 69.2 & 78.8 & \dn{$-$9.6} \\
+\midrule
+Qwen2.5-VL-72B~\cite{bai2025qwen25vl}   & 58.6 & 79.2 & \dn{$-$20.6} \\
+Llama 4 Mav.~\cite{meta2025llama4}      & 56.2 & 87.0 & \dn{$-$30.8} \\
+\midrule
+GPT-4.1-mini~\cite{openai2025gpt41mini}  & 74.6 & 70.2 & \up{+4.4} \\
+\midrule
+\textbf{Mean}    & \textbf{58.5} & 77.2 & \dn{$-$18.7} \\
+\bottomrule
+\end{tabular}
+\end{table}

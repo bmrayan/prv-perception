@@ -1,0 +1,1 @@
+{"experiment":"E2_Ministral8B_stage3_controls","rows":1500,"status_counts":{"ok":1500},"by_condition":{"D_mismatch":{"rows":500,"correct":355,"accuracy":0.71},"D_shuffled":{"rows":500,"correct":433,"accuracy":0.866},"D_noise":{"rows":500,"correct":398,"accuracy":0.796}},"complete_expected_rows":true,"historical_results_unchanged":true}

@@ -1,0 +1,22 @@
+{
+  "title": "Perception, Not Reasoning, Limits Visual Theory of Mind",
+  "year": 2026,
+  "conference": "NeurIPS 2026",
+  "workshop": "BabyVLM Workshop at NeurIPS 2026 \u2014 Oral",
+  "repository": null,
+  "dataset_repository": null,
+  "license_status": "Local release: MIT code; CC-BY-4.0 original abstract 2D data",
+  "paper_models": [
+    "gpt-4o-2024-11-20",
+    "gemini-2.5-pro-preview",
+    "claude-sonnet-4",
+    "qwen-2.5-vl-72b-instruct",
+    "llama-4-maverick",
+    "gpt-4.1-mini",
+    "ministral-8b-2512"
+  ],
+  "ablation_panel": "first six paper models",
+  "source_pdf_sha256": "b5ebb403c5d31f936ecf0e61b6a1bfbc8ec36176e49f653aa59ad86d324a5a17",
+  "code_license": "MIT",
+  "dataset_license": "CC-BY-4.0"
+}

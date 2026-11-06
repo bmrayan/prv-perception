@@ -1,0 +1,23 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Chain-of-thought self-scaffolding} (Stage~3 ablation subset, $n$=500 per model). $\dagger$Gemini produces truncated markdown reasoning; only 15\% of responses were parseable.}
+\label{tab:cot_supp}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l cc c@{}}
+\toprule
+\textbf{Model} & \chipBa\,$A_\mathrm{CoT}$ & \chipA\,A & $\Delta$ \\
+\midrule
+GPT-4o~\cite{openai2024gpt4o}           & 76.6 & 76.4 & \up{+0.2} \\
+Gemini 2.5 Pro$^\dagger$~\cite{google2025gemini}   & N/A & 71.8 & N/A \\
+Claude Sonnet 4~\cite{anthropic2025claude}  & 90.6 & 78.8 & \up{+11.8} \\
+\midrule
+Qwen2.5-VL-72B~\cite{bai2025qwen25vl}   & 74.0 & 79.2 & \dn{$-$5.2} \\
+Llama 4 Mav.~\cite{meta2025llama4}      & 62.8 & 87.0 & \dn{$-$24.2} \\
+\midrule
+GPT-4.1-mini~\cite{openai2025gpt41mini}  & 79.0 & 70.2 & \up{+8.8} \\
+\midrule
+\textbf{Mean (excl.\ Gem.)}    & \textbf{76.6} & 78.3 & \dn{$-$1.7} \\
+\bottomrule
+\end{tabular}
+\end{table}

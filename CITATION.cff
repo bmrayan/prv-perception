@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "Please cite the paper if you use the code, data, or results."
+type: conference-paper
+title: "Perception, Not Reasoning, Limits Visual Theory of Mind"
+authors:
+  - family-names: Barhdadi
+    given-names: Mohamed Rayan
+  - family-names: Wasim
+    given-names: Syed Talal
+  - family-names: Gall
+    given-names: Juergen
+  - family-names: Serpedin
+    given-names: Erchin
+  - family-names: Kurban
+    given-names: Hasan
+year: 2026
+conference:
+  name: "Neural Information Processing Systems (NeurIPS 2026)"
+keywords:
+  - visual theory of mind
+  - perception
+  - false belief
+  - multimodal evaluation

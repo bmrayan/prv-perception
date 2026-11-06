@@ -1,0 +1,8 @@
+scenario_family,condition,overall_layer_mean,action_mean,format_validity_rate
+virtualhome_script,A_visual,18.424204144789773,5.87673922803687,
+virtualhome_script,B_auto_claude,17.4059789145344,4.558515441747553,
+virtualhome_script,B_auto_gpt4o,17.512528880772148,4.772408237118072,
+virtualhome_script,B_auto_mean,17.459253897653273,4.665461839432812,
+virtualhome_script,B_percept,22.588433206145762,9.24534297304789,
+virtualhome_script,C_text,31.542888579062343,17.78229342231222,
+virtualhome_script,D_mismatch,16.984636578865576,5.957742171230686,

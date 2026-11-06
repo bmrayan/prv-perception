@@ -1,0 +1,22 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Paraphrase robustness for C and $B_\mathrm{full}$} (Stage~3 ablation subset, $n$=3,000 per variant).}
+\label{tab:paraphrase_supp}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Condition} & \textbf{Acc (\%)} & $\Delta$ vs original \\
+\midrule
+C (original) & 95.7 & n/a \\
+$C_\mathrm{restructured}$ & 95.2 & \dn{$-$0.5} \\
+$C_\mathrm{vocabulary}$ & 94.8 & \dn{$-$0.9} \\
+$C_\mathrm{adversarial}$ & 97.2 & \up{+1.5} \\
+\midrule
+$B_\mathrm{full}$ (original) & 98.6 & n/a \\
+$B_{f,\mathrm{restructured}}$ & 93.9 & \dn{$-$4.7} \\
+$B_{f,\mathrm{vocabulary}}$ & 97.1 & \dn{$-$1.5} \\
+$B_{f,\mathrm{adversarial}}$ & 97.6 & \dn{$-$1.0} \\
+\bottomrule
+\end{tabular}
+\end{table}

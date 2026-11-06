@@ -1,0 +1,9 @@
+group,A_visual,B_auto_gpt4o,B_auto_claude,B_auto_mean,B_percept,B_full,C_text,D_mismatch,visual_to_text_gap,overall_gap,rescue_auto_parser,rescue_percept,rescue_full,PCR_auto_parser,PCR_percept,PCR_full
+Claude Sonnet 4,,,,,,23.040535989017165,,,,,,,,,,
+GPT-4.1 Mini,,,,,,25.517136837431146,,,,,,,,,,
+GPT-4o,,,,,,31.658526239519553,,,,,,,,,,
+Gemini 2.5 Pro,,,,,,22.80729062995099,,,,,,,,,,
+Llama 4 Maverick 17B,,,,,,29.262394674413184,,,,,,,,,,
+Ministral 8B,,,,,,21.58904257769487,,,,,,,,,,
+Qwen2.5-VL 72B Instruct,,,,,,26.763476316430697,,,,,,,,,,
+Frontier mean,,,,,,25.805486180636798,,,,,,,,,,

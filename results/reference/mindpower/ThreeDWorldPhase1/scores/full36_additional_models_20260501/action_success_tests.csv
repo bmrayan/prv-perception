@@ -1,0 +1,13 @@
+group,comparison,mcnemar_exact_p
+GPT-4.1 Mini,A_visual_vs_B_auto_mean,
+GPT-4.1 Mini,A_visual_vs_B_percept,
+GPT-4.1 Mini,A_visual_vs_C_text,
+Llama 4 Maverick 17B,A_visual_vs_B_auto_mean,
+Llama 4 Maverick 17B,A_visual_vs_B_percept,1.0
+Llama 4 Maverick 17B,A_visual_vs_C_text,0.5
+Ministral 8B,A_visual_vs_B_auto_mean,
+Ministral 8B,A_visual_vs_B_percept,
+Ministral 8B,A_visual_vs_C_text,
+Qwen2.5-VL 72B Instruct,A_visual_vs_B_auto_mean,
+Qwen2.5-VL 72B Instruct,A_visual_vs_B_percept,
+Qwen2.5-VL 72B Instruct,A_visual_vs_C_text,

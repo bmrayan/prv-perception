@@ -1,0 +1,25 @@
+\begin{table}[t]
+\centering
+\caption{\textbf{Per-model accuracy (\%) on MuMA-ToM.} $n{=}900$ probes per model. The $B_p$ condition is not defined for MuMA-ToM. Tier abbreviations: F = Frontier, M = Mid-scale, S = Small-scale. \textbf{Bold}: best per row.}
+\label{tab:permodel_muma}
+\footnotesize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+\textbf{Model} & \textbf{Tier} & \chipA\,A & \chipBa\,$B_a$ & \chipBf\,$B_f$ & \chipC\,C \\
+\midrule
+GPT-4o~\cite{openai2024gpt4o} & F & 45.8 & 47.6 & 52.4 & \textbf{56.4} \\
+Gemini 2.5 Pro~\cite{google2025gemini} & F & 62.3 & 59.1 & \textbf{84.2} & 65.1 \\
+Claude Sonnet 4~\cite{anthropic2025claude} & F & 33.8 & 43.3 & \textbf{64.9} & 52.8 \\
+\midrule
+Qwen2.5-VL-72B~\cite{bai2025qwen25vl} & M & 48.1 & 45.1 & \textbf{58.1} & 55.8 \\
+Llama 4 Maverick~\cite{meta2025llama4} & M & 44.2 & 47.8 & \textbf{55.7} & 50.2 \\
+\midrule
+GPT-4.1-mini~\cite{openai2025gpt41mini} & S & 41.1 & 46.9 & 51.4 & \textbf{55.8} \\
+Ministral-8B~\cite{mistral2024ministral} & S & 37.4 & 41.9 & 39.9 & \textbf{42.1} \\
+\midrule
+\textbf{Mean} & & 44.7 & 47.4 & \textbf{58.1} & 54.0 \\
+\bottomrule
+\end{tabular}
+\end{table}

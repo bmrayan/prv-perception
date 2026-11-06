@@ -1,0 +1,1 @@
+{"experiment":"E2_Ministral8B_stage3_controls","probe_count":500,"models":["mistralai/ministral-8b-2512"],"conditions":["D_mismatch","D_shuffled","D_noise"],"calls_planned":1500,"unique_keys_saved":1500,"complete":false,"api_key_count":6,"historical_results_unchanged":true}
