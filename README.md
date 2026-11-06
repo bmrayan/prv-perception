@@ -6,7 +6,7 @@ Mohamed Rayan Barhdadi · Syed Talal Wasim · Juergen Gall · Erchin Serpedin ·
 
 <p>
   <a href="https://bmrayan.github.io/prv-perception/"><img src="website/assets/website-logo.svg" alt="" width="18" height="18" align="absmiddle"> <strong>Website</strong></a> &middot;
-  <span><img src="website/assets/arxiv-logo.svg" alt="" width="18" height="18" align="absmiddle"> <strong>arXiv (coming soon)</strong></span> &middot;
+  <a href="https://arxiv.org/"><img src="website/assets/arxiv-logo.svg" alt="" width="18" height="18" align="absmiddle"> <strong>arXiv</strong></a> &middot;
   <a href="https://huggingface.co/datasets/bmrayan/perception-not-reasoning"><img src="website/assets/huggingface-logo.svg" alt="" width="19" height="18" align="absmiddle"> <strong>Hugging Face</strong></a>
 </p>
 
