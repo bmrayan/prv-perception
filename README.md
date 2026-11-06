@@ -12,7 +12,9 @@ Mohamed Rayan Barhdadi · Syed Talal Wasim · Juergen Gall · Erchin Serpedin ·
 
 <img src="website/assets/teaser.png" alt="Scene information improves visual theory-of-mind performance." width="100%">
 
-Code for controlled comparisons of visual-only, automatic-scaffold, perceptual-scaffold, full-scaffold, and text-only inputs across seven models, abstract scenes, MuMA-ToM, and MindPower.
+## Abstract
+
+Vision-language models pass text-based false-belief probes at near-human levels but drop by twenty or more percentage points the moment the same problem is conveyed visually. The consensus diagnosis is conceptual, prescribing new belief-reasoning modules. We argue the bottleneck is perceptual: not what the model cannot reason about, but what it cannot see. We propose a five-condition dissociation protocol that holds the reasoning task constant while varying perceptual fidelity from visual only to text only, and quantify the result with the Perceptual Contribution Ratio, a dose-response metric measuring how much of the visual-to-text gap a scaffold of given fidelity closes. Instantiated on abstract 2D panels in the Heider-Simmel tradition and naturalistic 3D game scenes from MuMA-ToM and MindPower across seven VLMs and roughly 147,000 API calls, ground-truth scaffolds close the gap on every regime, matching or exceeding the text-only ceiling on abstract panels and MuMA-ToM. Automatic parsers, including frontier VLMs as zero-shot scene describers, fail. The dominant visual-only error mode is reality bias (60% of false-belief failures): models report where an object currently is rather than where an absent agent believes it to be, the signature of a front-end that fails to encode who was present when. The route to better visual social reasoning runs through perception, not new reasoning modules.
 
 ## Setup
 
