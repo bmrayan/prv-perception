@@ -194,18 +194,18 @@ body {
 .paper-figure figcaption { margin-top: 1rem; font-size: 0.9rem; line-height: 1.6; color: #555; }
 .pathways-figure { max-width: 620px; margin-left: auto; margin-right: auto; }
 
-.results-explorer { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 24px; }
-.chart-summary { color: #666; font-size: 13px; margin-bottom: 16px; }
-.result-bar-row { display: grid; grid-template-columns: 155px minmax(0, 1fr) 76px; align-items: center; gap: 12px; width: 100%; padding: 12px 6px; border: 0; border-radius: 6px; background: transparent; font: inherit; text-align: left; }
-.result-label, .result-value { font-size: 13px; }
-.result-value { text-align: right; font-variant-numeric: tabular-nums; }
-.result-track { position: relative; height: 26px; background: #f2f2f2; border-radius: 3px; }
-.result-fill { position: absolute; top: 0; height: 100%; border-radius: 3px; }
-.chart-table summary { cursor: pointer; color: #3273dc; font-size: 14px; }
+.results-explorer { background: #fff; padding: 24px; }
+.chart-summary { color: #555; font-size: 13px; margin: 0 0 8px; }
+#interactive-bars svg { display: block; width: 100%; height: auto; font-family: inherit; }
+.plot-tick { fill: #666; font-size: 12px; }
+.plot-value { fill: #333; font-size: 14px; font-weight: 600; }
+.plot-symbol { fill: #333; font-size: 15px; font-style: italic; }
+.plot-label { fill: #555; font-size: 12px; }
+.chart-table summary { cursor: pointer; color: #555; font-size: 13px; margin-top: 12px; }
 .chart-table table { margin-top: 16px; font-size: 13px; }
-@media (max-width: 600px) { .results-explorer { padding: 16px; } .result-bar-row { grid-template-columns: minmax(0, 1fr) 76px; gap: 6px; } .result-label { grid-column: 1 / -1; } }
+@media (max-width: 600px) { .results-explorer { padding: 12px 0; } #interactive-bars { overflow-x: auto; } #interactive-bars svg { min-width: 520px; } }
 
 .dataset-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid #dbdbdb; }
 .dataset-tabs button { padding: 10px 12px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #555; font: inherit; cursor: pointer; }
-.dataset-tabs button[aria-pressed="true"] { border-bottom-color: #3273dc; color: #3273dc; }
+.dataset-tabs button[aria-pressed="true"] { border-bottom-color: #555; color: #222; }
 .dataset-tabs button:focus-visible { outline: 2px solid #3273dc; outline-offset: 2px; }
