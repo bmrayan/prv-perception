@@ -4,7 +4,7 @@
 
 **NeurIPS 2026** · **Oral at the BabyVLM Workshop, NeurIPS 2026**
 
-[Paper](paper/paper.pdf) · [Project website](website/index.html) · [Abstract 2D dataset](docs/DATA.md) · [Reproduce results](docs/REPRODUCE.md) · [Citation](#citation)
+[Paper](paper/paper.pdf) · [Project website](https://bmrayan.github.io/prv-perception/) · [Abstract 2D dataset](docs/DATA.md) · [Reproduce results](docs/REPRODUCE.md) · [Citation](#citation)
 
 <img src="assets/teaser.png" alt="The perceptual bottleneck hypothesis: structured scene descriptions recover visual false-belief performance." width="100%">
 
@@ -102,7 +102,7 @@ Open **http://localhost:8000/website/**. The page includes the opening paper fig
 }
 ```
 
-If this resource helps your research, please cite the paper. The public repository address will be added when the release is published.
+If this resource helps your research, please cite the paper and [star the repository](https://github.com/bmrayan/prv-perception).
 
 ## Acknowledgments
 
