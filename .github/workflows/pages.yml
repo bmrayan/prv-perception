@@ -1,0 +1,46 @@
+name: Publish website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/configure-pages@v6.0.0
+      - name: Prepare website files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import shutil
+          target = Path('_site')
+          target.mkdir()
+          shutil.copytree('website', target / 'website', ignore=shutil.ignore_patterns('source-code.zip'))
+          shutil.copytree('docs', target / 'docs')
+          (target / 'paper').mkdir()
+          for name in ('paper.pdf', 'citation.bib'):
+              shutil.copy2(Path('paper') / name, target / 'paper' / name)
+          shutil.copy2('index.html', target / 'index.html')
+          shutil.copy2('.nojekyll', target / '.nojekyll')
+          PY
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: _site
+      - name: Deploy website
+        id: deployment
+        uses: actions/deploy-pages@v5.0.1
