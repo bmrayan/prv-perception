@@ -1,6 +1,6 @@
 # Perception, Not Reasoning, Limits Visual Theory of Mind
 
-**NeurIPS (E&D) 2026 · Oral at the BabyVLM Workshop**
+**Accepted to NeurIPS (E&D) 2026 🎉 - Oral at the BabyVLM Workshop**
 
 Mohamed Rayan Barhdadi · Syed Talal Wasim · Juergen Gall · Erchin Serpedin · Hasan Kurban
 
