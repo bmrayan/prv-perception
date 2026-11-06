@@ -1,94 +1,101 @@
 # Perception, Not Reasoning, Limits Visual Theory of Mind
 
-**Mohamed Rayan Barhdadi · Syed Talal Wasim · Juergen Gall · Erchin Serpedin · Hasan Kurban**
+**NeurIPS (E&D) 2026 · Oral at the BabyVLM Workshop**
 
-**NeurIPS 2026** · **Oral at the BabyVLM Workshop, NeurIPS 2026**
+Mohamed Rayan Barhdadi · Syed Talal Wasim · Juergen Gall · Erchin Serpedin · Hasan Kurban
 
-[Paper](paper/paper.pdf) · [Project website](https://bmrayan.github.io/prv-perception/) · [Abstract 2D dataset](docs/DATA.md) · [Reproduce results](docs/REPRODUCE.md) · [Citation](#citation)
+[Website](https://bmrayan.github.io/prv-perception/) · [Data](#data) · [Reproduce](#reproduce) · [Citation](#citation)
 
-<img src="assets/teaser.png" alt="The perceptual bottleneck hypothesis: structured scene descriptions recover visual false-belief performance." width="100%">
+<img src="website/assets/teaser.png" alt="Scene information improves visual theory-of-mind performance." width="100%">
 
-Why do models answer a false-belief question correctly in text but fail when the same problem is shown in pictures? We hold the reasoning task constant and vary the perceptual information supplied to the model. Ground-truth scene descriptions substantially close the gap; automatic parsers do not.
+Code for controlled comparisons of visual-only, automatic-scaffold, perceptual-scaffold, full-scaffold, and text-only inputs across seven models, abstract scenes, MuMA-ToM, and MindPower.
 
-This repository contains the stimulus generator, evaluation and scoring code, saved responses, and reproduction scripts for the paper. The companion abstract 2D release contains **1,000 probes across 20 templates and three developmental stages**.
+## Setup
 
-## Quick start
-
-Python 3.10 or newer. Run commands from this directory.
+Python 3.10 or newer. Run commands from this directory:
 
 ```bash
 python -m venv .venv
-# Activate .venv first (see below)
+# Activate: source .venv/bin/activate (Linux/macOS)
+# Activate: .venv\Scripts\Activate.ps1 (PowerShell)
 python -m pip install -r requirements.txt
-python scripts/reproduce.py
 ```
 
-Activate the environment before installing: `source .venv/bin/activate` on macOS/Linux, or `.venv\Scripts\Activate.ps1` in PowerShell. The reproduction command reads the bundled results and writes tables and a numerical comparison with the paper to `results/reproduced/`. It does not make model calls or require the image dataset.
+## Data
 
-To install the companion dataset placed beside this repository:
+Data and saved responses are distributed separately from this code. The public dataset is hosted at [bmrayan/perception-not-reasoning](https://huggingface.co/datasets/bmrayan/perception-not-reasoning). Its local copy is in `../hf-perception-not-reasoning/`. It contains the 1,000 original abstract probes, images, annotations, Croissant metadata, and saved evaluation bundles under `results/`.
+
+Scripts use that sibling directory by default. To use a downloaded copy elsewhere, set `PERCEPTION_DATA_DIR` to its absolute path. PowerShell: `$env:PERCEPTION_DATA_DIR="D:\datasets\perception"`; Linux/macOS: `export PERCEPTION_DATA_DIR=/path/to/perception`. No installation or copying into this repository is needed.
+
+Obtain naturalistic source media from [MuMA-ToM](https://github.com/SCAI-JHU/MuMA-ToM) and the original MindPower release. These media are not redistributed. Place them under `../benchmark-data/MuMA-ToM/` and `../benchmark-data/MindPower/`, or set `PERCEPTION_BENCHMARK_DIR`. MuMA-ToM expects `questions.json`, `texts.json`, and `videos/`. MindPower preparation expects its original `ThreeDWorld/` and `VirtualHome/` directories. VirtualHome rendering additionally requires the original simulator and its Python source under `benchmark-data/external/virtualhome/`.
+
+## Reproduce
+
+Recompute tables and paired tests from saved responses, without model calls:
 
 ```bash
-python scripts/install_data.py --source ../hf-perception-not-reasoning
-python code/abstract/run_experiments.py --phase phase1 --dry-run
+python analysis/reproduce.py
+python analysis/significance.py
 ```
 
-For a dataset stored elsewhere, pass its directory to `--source`. Fresh model evaluations require `OPENROUTER_API_KEY`; see [the reproduction guide](docs/REPRODUCE.md).
+Outputs go to the external dataset's `results/reproduced/`. The significance script uses the original Condition A, seven models, 500 Stage 3 probes per model, and uncorrected McNemar chi-square. For tools requiring uncompressed logs, run `python analysis/unpack_results.py` first.
 
-## Five conditions
+## Evaluate
 
-| Condition | Input |
-|---|---|
-| A | Image and question |
-| B_auto | Image and an automatic perceptual description |
-| B_percept | Image and ground-truth perceptual facts |
-| B_full | Image and the full ground-truth description |
-| C | Ground-truth text and question, without the image |
-
-The **Perceptual Contribution Ratio** measures the fraction of the visual-to-text gap recovered by a scaffold:
-
-```text
-PCR = (accuracy with scaffold − visual-only accuracy)
-      / (text-only accuracy − visual-only accuracy)
-```
-
-## Main results
-
-Seven-model means from the paper. Abstract and MuMA-ToM entries are answer accuracy; MindPower uses its layer-averaged scoring protocol.
-
-| Benchmark | A | B_auto | B_percept | B_full | C |
-|---|---:|---:|---:|---:|---:|
-| Abstract 2D, false belief | 73.9 | 75.7 | 88.8 | **98.4** | 94.5 |
-| MuMA-ToM | 44.7 | 47.4 | — | **58.1** | 54.0 |
-
-See the paper for the ThreeDWorld and VirtualHome breakdowns. Saved per-response scores for both are included. [Result provenance](docs/RESULTS.md) records model panels, sample counts, and the distinction between paper experiments and subsequent controls.
-
-## Repository structure
-
-```text
-code/
-  abstract/         Stimulus generation, evaluation, and ablations
-  naturalistic/     MuMA-ToM evaluation
-  mindpower_eval/   MindPower preparation, evaluation, and scoring
-  controls/         Additional scaffold controls
-configs/            Paper values, model panels, and source provenance
-data/               Dataset installation location
-results/
-  reference/        Saved paper responses and scored rows
-  followup/         Additional controls, kept separate
-scripts/            Offline reproduction and release checks
-docs/               Setup, data, and result documentation
-assets/             Main paper figure
-paper/              Camera-ready PDF, tables, and BibTeX
-website/            Standalone project page
-```
-
-## Project website
+For fresh evaluations, set `OPENROUTER_API_KEY` in your environment.
 
 ```bash
-python -m http.server 8000 --bind 127.0.0.1
+python evaluation/abstract2d/evaluate.py --phase phase1 --dry-run
+python evaluation/abstract2d/evaluate.py --phase phase1
+python evaluation/abstract2d/evaluate.py --phase phase2
+python evaluation/abstract2d/evaluate.py --phase robustness
+python evaluation/abstract2d/evaluate.py --phase analysis
 ```
 
-Open **http://localhost:8000/website/**. The page includes the opening paper figure, an interactive condition comparison, sample probes, downloadable data, and a copyable BibTeX entry. It works without a frontend build step.
+Phase 1 runs A / B_auto / B_percept / B_full / C. Phase 2 runs corrupted descriptions. `--data-dir`, `--output-dir`, and `--model-ids` override the defaults. The renderer and grading definitions are in the same module.
+
+```bash
+python evaluation/abstract2d/ablations.py --experiment vis_stripped
+python evaluation/abstract2d/ablations.py --experiment paraphrases
+python evaluation/abstract2d/ablations.py --experiment vlm_parser
+python evaluation/abstract2d/reasoning_baselines.py --experiments cot self_scaffold --resume
+python evaluation/muma/evaluate_muma.py --sample-videos 225 --model-count 7 --run-name paper_panel
+```
+
+MindPower preparation, evaluation, and scoring:
+
+```bash
+python evaluation/mindpower/prepare_threedworld.py --help
+python evaluation/mindpower/evaluate_threedworld.py --help
+python evaluation/mindpower/prepare_virtualhome.py --help
+python evaluation/mindpower/evaluate_virtualhome.py --help
+python -m pip install -r evaluation/mindpower/requirements.txt
+python evaluation/mindpower/score.py --help
+```
+
+Use the saved run configurations and selection manifests in the external results bundle for the original panels and parameters. Semantic scoring downloads pretrained weights on first use.
+
+Additional controls are in `evaluation/controls/`: `evaluate_positions.py`, `evaluate_names.py`, `prepare_corruptions.py`, `evaluate_corruptions_ministral.py`, and `evaluate_visibility.py`. Their corresponding `analyze_*.py` files reproduce the control analyses. Unpack saved logs before analyses that require JSONL rather than gzip files.
+
+## Results
+
+Reproduction preserves the saved scores. The printed paper tables and saved scores agree in 162 of 168 checked cells; six MindPower values differ by 0.1 percentage point. `results/reproduced/verification.json` lists them. The original Stage 1 permanence and color-change prompts explicitly include their expected answers; treat those items separately when interpreting visual competence. Full scaffolds contain more information than perceptual scaffolds. Model panels, baselines, and scoring rules must be reported with each comparison.
+
+## Layout
+
+```text
+evaluation/
+  abstract2d/   Generation, model evaluation, and ablations
+  muma/         MuMA-ToM evaluation
+  mindpower/    Preparation, evaluation, and semantic scoring
+  controls/     Scaffold and visibility controls
+analysis/       Offline tables and significance tests
+website/        Project page and presentation figures
+```
+
+## Paper
+
+The camera-ready PDF and manuscript source are kept outside this code repository. A public paper URL will be linked here when available. The first-page figure is retained above and on the website.
 
 ## Citation
 
@@ -102,12 +109,8 @@ Open **http://localhost:8000/website/**. The page includes the opening paper fig
 }
 ```
 
-If this resource helps your research, please cite the paper and [star the repository](https://github.com/bmrayan/prv-perception).
+Please cite the paper and [star the repository](https://github.com/bmrayan/prv-perception) if you use this work.
 
-## Acknowledgments
+## License and acknowledgments
 
-Naturalistic experiments use [MuMA-ToM](https://github.com/SCAI-JHU/MuMA-ToM) and MindPower. Their data retain their original terms; see [data sources](docs/DATA.md). Repository organization draws on [MMToM-QA](https://github.com/chuanyangjin/MMToM-QA), [AutoToM](https://github.com/SCAI-JHU/AutoToM), [FANToM](https://github.com/skywalker023/fantom), and [ToMi](https://github.com/facebookresearch/ToMi). The project page follows the publication-focused layout of [IRIS](https://github.com/KurbanIntelligenceLab/iris-bench).
-
-## License
-
-Original code is released under [MIT](LICENSE). The companion abstract 2D dataset uses CC BY 4.0. External benchmarks remain under their original terms; see [data documentation](docs/DATA.md).
+Code: [MIT](LICENSE). Original abstract data: CC BY 4.0. External benchmark material retains its original terms. Repository organization follows [MMToM-QA](https://github.com/chuanyangjin/MMToM-QA), [AutoToM](https://github.com/SCAI-JHU/AutoToM), and [MuMA-ToM](https://github.com/SCAI-JHU/MuMA-ToM). Website template: [IRIS-Bench](https://github.com/KurbanIntelligenceLab/iris-bench); its license is retained in `website/LICENSE-template.txt`.

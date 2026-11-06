@@ -1,2 +1,0 @@
-friendly_model_name,condition,perception_bertscore,perception_sent_sim,belief_bertscore,belief_sent_sim,desire_bertscore,desire_sent_sim,intention_bertscore,intention_sent_sim,decision_bertscore,decision_sent_sim,action_sr,action_ac,action_mean,overall_layer_mean,bpc_overall,format_validity_rate
-Frontier mean,B_full,33.07809220727474,51.32010880349174,40.551768312378535,59.923522691878055,45.83728010692293,50.723170087451024,44.1059412123665,56.17729496388208,44.953428576863,54.9636419254636,41.12366726325685,26.378968253968253,33.75131775861255,45.761407033766446,,100.0

@@ -1,2 +1,0 @@
-# Preserve release bytes so provenance checks work across platforms.
-* -text

@@ -1,2 +1,0 @@
-"""MindPower ThreeDWorld evaluation utilities."""
-

@@ -1,110 +1,76 @@
-'use strict';
-const labels = {A:'A · Visual',B_auto:'Bₐ · Automatic',B_percept:'Bₚ · Perceptual',B_full:'Bf · Full',C:'C · Text',A_visual:'A · Visual',B_auto_gpt4o:'Bₐ · GPT parser',B_auto_claude:'Bₐ · Claude parser',C_text:'C · Text'};
-const colors = {A:'--a',A_visual:'--a',B_auto:'--ba',B_auto_gpt4o:'--ba',B_auto_claude:'--ba',B_percept:'--bp',B_full:'--bf',C:'--c',C_text:'--c'};
-let selectedBenchmark = 'abstract';
-const modelSelect = document.getElementById('model-select');
-const probeSelect = document.getElementById('probe-select');
-
-function cell(tag, text) {
-  const element = document.createElement(tag);
-  element.textContent = text;
-  return element;
+async function copyBib() {
+  const text = document.getElementById('bibtex-code').innerText;
+  const button = document.querySelector('.copy-bib-btn');
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = 'Copied!';
+  } catch {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(document.getElementById('bibtex-code'));
+    selection.removeAllRanges();
+    selection.addRange(range);
+    button.textContent = 'Select and copy';
+  }
+  setTimeout(() => { button.textContent = 'Copy'; }, 2000);
 }
+
+const resultSettings = {
+  muma: { name: 'MuMA-ToM', values: [44.7, 47.4, null, 58.1, 54.0] },
+  mindpower: { name: 'MindPower', values: [19.1, 18.3, 24.1, 27.3, 33.0] },
+  abstract: { name: 'Abstract false belief', values: [73.9, 75.7, 88.8, 98.4, 94.5] }
+};
+const conditionNames = ['A · Visual-only', 'Bₐ · Automatic', 'Bₚ · Perceptual', 'Bꜰ · Full scaffold', 'C · Text-only'];
+const conditionColors = ['#707070', '#9b9b9b', '#5296c6', '#3273dc', '#8b71ad'];
 
 function renderResults() {
-  const benchmark = window.PAPER_DATA.benchmarks[selectedBenchmark];
-  const row = benchmark.rows.find(item => item.model === modelSelect.value) || benchmark.rows.at(-1);
-  document.getElementById('chart-title').textContent = benchmark.title;
-  document.getElementById('chart-unit').textContent = benchmark.unit;
-  document.getElementById('chart-note').textContent = benchmark.note;
-  const chart = document.getElementById('bar-chart');
-  chart.replaceChildren();
-  benchmark.conditions.forEach(condition => {
-    const line = document.createElement('div');
-    line.className = 'bar-row';
-    const label = cell('span', labels[condition]);
-    label.className = 'bar-label';
-    const track = document.createElement('div');
-    track.className = 'bar-track';
-    const fill = document.createElement('div');
-    fill.className = 'bar-fill';
-    fill.style.background = `var(${colors[condition]})`;
-    fill.style.width = `${row[condition]}%`;
-    track.append(fill);
-    const value = cell('span',row[condition].toFixed(1));
-    value.className = 'bar-value';
-    line.append(label,track,value);
-    chart.append(line);
-  });
-  const table = document.getElementById('results-table');
-  const head = document.createElement('tr');
-  ['Model',...benchmark.conditions.map(c=>labels[c])].forEach(text=>head.append(cell('th',text)));
-  table.querySelector('thead').replaceChildren(head);
-  const body = table.querySelector('tbody');
-  body.replaceChildren();
-  benchmark.rows.forEach(item=>{
-    const tr = document.createElement('tr');
-    tr.append(cell('td',item.model));
-    benchmark.conditions.forEach(c=>tr.append(cell('td',item[c].toFixed(1))));
-    body.append(tr);
-  });
-}
-
-function renderProbe() {
-  const probe = window.PAPER_DATA.examples.find(p=>p.id===probeSelect.value);
-  const img = document.getElementById('probe-image');
-  img.src = `assets/${probe.id}.png`;
-  img.alt = `${probe.label}: ${probe.panel_count}-panel released stimulus`;
-  document.getElementById('probe-question').textContent = probe.question;
-  document.getElementById('expected-answer').textContent = probe.answer;
-  document.getElementById('probe-description').textContent = probe.description;
-  document.getElementById('probe-id').textContent = probe.id;
-  document.getElementById('probe-answer').open = false;
-}
-
-window.PAPER_DATA.benchmarks.abstract.rows.filter(r=>r.model!=='Mean').forEach(row=>{
-  const option = cell('option',row.model);
-  option.value = row.model;
-  modelSelect.append(option);
-});
-window.PAPER_DATA.examples.forEach(probe=>{
-  const option = cell('option',probe.label);
-  option.value = probe.id;
-  probeSelect.append(option);
-});
-document.querySelectorAll('[data-benchmark]').forEach(button=>button.addEventListener('click',()=>{
-  selectedBenchmark = button.dataset.benchmark;
-  document.querySelectorAll('[data-benchmark]').forEach(other=>{
-    const active = other === button;
-    other.classList.toggle('active',active);
-    other.setAttribute('aria-pressed',String(active));
-  });
-  renderResults();
-}));
-modelSelect.addEventListener('change',renderResults);
-probeSelect.addEventListener('change',renderProbe);
-document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener('click',async()=>{
-  const text = document.getElementById(button.dataset.copy).textContent;
-  try {
-    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
-    else {
-      const field = document.createElement('textarea');
-      field.value = text;
-      field.style.position='fixed';
-      field.style.left='-10000px';
-      document.body.append(field);
-      field.select();
-      const ok = document.execCommand('copy');
-      field.remove();
-      if (!ok) throw new Error('Clipboard unavailable');
+  const setting = resultSettings[document.getElementById('benchmark-select').value];
+  const gain = document.getElementById('metric-select').value === 'gain';
+  const selected = [...document.querySelectorAll('.condition-controls input:checked')].map(input => Number(input.value));
+  const bars = document.getElementById('interactive-bars');
+  const detail = document.getElementById('chart-detail');
+  bars.replaceChildren();
+  document.getElementById('chart-summary').textContent = `${setting.name} · Seven-model mean · ${gain ? 'Change from A (percentage points)' : 'Reported score (%)'} · ${gain ? 'Scale: −25 to +25 pp' : 'Scale: 0–100%'}`;
+  detail.textContent = selected.length ? 'Hover, focus, or select a bar for details. Values are rounded as reported in the paper.' : 'Select at least one condition to display its result.';
+  for (const i of selected) {
+    const score = setting.values[i];
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'result-bar-row';
+    const label = document.createElement('span');
+    label.className = 'result-label';
+    label.textContent = conditionNames[i];
+    const track = document.createElement('span');
+    track.className = `result-track${gain ? ' gain-track' : ''}`;
+    const fill = document.createElement('span');
+    fill.className = 'result-fill';
+    fill.style.background = conditionColors[i];
+    const value = document.createElement('span');
+    value.className = 'result-value';
+    let description;
+    if (score === null) {
+      value.textContent = 'n/a';
+      description = `${conditionNames[i]} is not defined for ${setting.name}.`;
+    } else {
+      const delta = score - setting.values[0];
+      const signed = `${delta > 0 ? '+' : ''}${delta.toFixed(1)}`;
+      value.textContent = gain ? `${signed} pp` : `${score.toFixed(1)}%`;
+      fill.style.width = `${gain ? Math.abs(delta) * 2 : score}%`;
+      fill.style.left = `${gain ? (delta < 0 ? 50 + delta * 2 : 50) : 0}%`;
+      description = `${setting.name} — ${conditionNames[i]}: ${score.toFixed(1)}%; ${signed} percentage points compared with visual-only (${setting.values[0].toFixed(1)}%).`;
     }
-    const previous = button.textContent;
-    button.textContent = 'Copied ✓';
-    document.getElementById('copy-status').textContent = button.dataset.copy==='bibtex'?'Citation copied to clipboard.':'Command copied to clipboard.';
-    setTimeout(()=>{button.textContent=previous;},2000);
-  } catch {
-    document.getElementById('copy-status').textContent='Select the text to copy it, or download the citation file.';
+    track.append(fill);
+    row.append(label, track, value);
+    row.setAttribute('aria-label', description);
+    row.title = description;
+    for (const event of ['mouseenter', 'focus', 'click']) row.addEventListener(event, () => { detail.textContent = description; });
+    bars.append(row);
   }
-}));
-renderResults();
-renderProbe();
+}
+
+if (document.getElementById('results-explorer')) {
+  document.getElementById('benchmark-select').addEventListener('change', renderResults);
+  document.getElementById('metric-select').addEventListener('change', renderResults);
+  document.querySelectorAll('.condition-controls input').forEach(input => input.addEventListener('change', renderResults));
+  renderResults();
+}

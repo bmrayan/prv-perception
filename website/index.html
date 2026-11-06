@@ -1,53 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Perception, Not Reasoning, Limits Visual Theory of Mind. NeurIPS 2026. Paper, code, abstract 2D dataset, and reproducible results.">
-  <meta name="theme-color" content="#34304a">
-  <link rel="canonical" href="https://bmrayan.github.io/prv-perception/website/">
-  <meta property="og:url" content="https://bmrayan.github.io/prv-perception/website/">
-  <meta property="og:title" content="Perception, Not Reasoning, Limits Visual Theory of Mind">
-  <meta property="og:description" content="A five-condition study of the perceptual bottleneck in visual theory of mind. NeurIPS 2026.">
-  <meta property="og:image" content="assets/teaser.png">
-  <title>Perception, Not Reasoning · NeurIPS 2026</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
-  <script src="data.js" defer></script>
-  <script src="app.js" defer></script>
-</head>
+<meta charset="utf-8"/>
+<meta content="Perception, Not Reasoning, Limits Visual Theory of Mind. A controlled study of perceptual bottlenecks across seven models and three benchmark settings. NeurIPS (E&amp;D) 2026." name="description"/>
+<meta content="theory of mind, visual reasoning, perception, benchmark, NeurIPS (E&amp;D) 2026" name="keywords"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Perception, Not Reasoning, Limits Visual Theory of Mind</title>
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/><link href="https://bmrayan.github.io/prv-perception/website/" rel="canonical"/><meta content="Perception, Not Reasoning, Limits Visual Theory of Mind" property="og:title"/><meta content="https://bmrayan.github.io/prv-perception/website/assets/teaser.png" property="og:image"/><meta content="https://bmrayan.github.io/prv-perception/website/" property="og:url"/></head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <header class="topbar"><a class="wordmark" href="#">Perception, Not Reasoning<span class="wordmark-dot">.</span></a><nav aria-label="Main navigation"><a href="#results">Results</a><a href="#dataset">Dataset</a><a href="#citation">Cite</a><a class="nav-code" href="https://github.com/bmrayan/prv-perception" data-repo>Code ↗</a></nav></header>
-  <main id="main">
-    <section class="hero container">
-      <div class="venue"><span>NeurIPS 2026</span><span>BabyVLM Workshop · Oral</span></div>
-      <h1>Perception, Not Reasoning,<br><span>Limits Visual Theory of Mind</span></h1>
-      <div class="authors"><span>Mohamed Rayan Barhdadi<sup>1</sup></span><span>Syed Talal Wasim<sup>2,3</sup></span><span>Juergen Gall<sup>2,3</sup></span><span>Erchin Serpedin<sup>1</sup></span><span>Hasan Kurban<sup>4</sup></span></div>
-      <p class="affiliations"><span><sup>1</sup> Texas A&amp;M University</span><span><sup>2</sup> University of Bonn</span><span><sup>3</sup> Lamarr Institute</span><span><sup>4</sup> Hamad Bin Khalifa University</span></p>
-      <p class="hero-summary">The same question. The same reasoning task.<br><strong>A different view of the world.</strong></p>
-      <div class="actions"><a class="button primary" href="../paper/paper.pdf">↗ Read the paper</a><a class="button" href="https://github.com/bmrayan/prv-perception" data-repo><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m8 5-7 7 7 7m8-14 7 7-7 7m-3-16-2 18"/></svg>Code</a><a class="button" href="assets/abstract2d.zip" download>↓ Dataset</a><a class="button" href="#citation">“ Cite</a><span class="button star" aria-disabled="true" title="The repository has not been published yet.">☆ GitHub release forthcoming</span></div>
-      <figure class="teaser"><a href="assets/teaser.png" aria-label="Open the main paper figure at full size"><img src="assets/teaser.png" width="1782" height="702" alt="The perceptual bottleneck hypothesis. A Sally-Anne example contrasts a visual-only reality-biased answer with a correct scaffolded answer. Bar plots show visual-to-text gaps across three benchmarks."></a><figcaption><b>Seeing the scene is the bottleneck.</b> Ground-truth perceptual scaffolds recover false-belief performance without changing the reasoning task.</figcaption></figure>
-    </section>
-
-    <section class="abstract-band"><div class="reading-width"><p class="eyebrow">The finding</p><h2>What if the missing piece<br>is the scene representation?</h2><p>Vision-language models can solve false-belief problems in text, yet struggle when the same problems are presented visually. We test whether this gap comes from perceptual extraction or belief reasoning by holding the task constant and varying the information supplied.</p><p>Across abstract 2D panels and naturalistic scenes from MuMA-ToM and MindPower, ground-truth descriptions substantially close the gap. Automatic parsers—including strong visual describers—do not. Our results point to a perceptual bottleneck: models need better representations of who was present, what changed, and who could observe it.</p><div class="stat-strip"><div><strong>7</strong><span>evaluated models</span></div><div><strong>3</strong><span>benchmark settings</span></div><div><strong>5</strong><span>input conditions</span></div><div><strong>1,000</strong><span>abstract 2D probes</span></div></div></div></section>
-
-    <section class="container section" id="protocol"><div class="section-heading"><p class="eyebrow">Controlled comparison</p><h2>One task. Five views.</h2><p>Each condition changes the available perceptual information while preserving the question.</p></div><div class="condition-line"><article><span class="condition-symbol a">A</span><h3>Visual only</h3><p>Image + question</p></article><article><span class="condition-symbol ba">B<sub>a</sub></span><h3>Automatic</h3><p>Image + parser output</p></article><article><span class="condition-symbol bp">B<sub>p</sub></span><h3>Perceptual facts</h3><p>Image + ground-truth facts</p></article><article><span class="condition-symbol bf">B<sub>f</sub></span><h3>Full scaffold</h3><p>Image + full description</p></article><article><span class="condition-symbol c">C</span><h3>Text only</h3><p>Description + question</p></article></div><div class="formula"><div><p class="eyebrow">Perceptual Contribution Ratio</p><p>How much of the visual-to-text gap<br>does the scaffold recover?</p></div><div class="equation"><span>PCR = </span><span class="fraction"><span>Acc(B) − Acc(A)</span><span>Acc(C) − Acc(A)</span></span></div></div></section>
-
-    <section class="results-band" id="results"><div class="container section"><div class="section-heading"><p class="eyebrow">Evidence across models</p><h2>Give the model the scene.<br>Recover the answer.</h2><p>Explore the paper’s results. Each view uses the seven-model paper panel.</p></div><div class="chart-toolbar"><div class="tabs" role="group" aria-label="Benchmark"><button class="active" data-benchmark="abstract" aria-pressed="true">Abstract 2D</button><button data-benchmark="muma" aria-pressed="false">MuMA-ToM</button><button data-benchmark="threedworld" aria-pressed="false">ThreeDWorld</button><button data-benchmark="virtualhome" aria-pressed="false">VirtualHome</button></div><label for="model-select">Model <select id="model-select"><option value="Mean">Seven-model mean</option></select></label></div><div class="chart-shell"><div class="chart-topline"><h3 id="chart-title">Abstract 2D · False belief</h3><span id="chart-unit">Accuracy (%)</span></div><div class="bar-chart" id="bar-chart" aria-label="Accuracy by input condition"></div><p class="chart-note" id="chart-note">500 probes per model · Table 3</p></div><details class="table-details"><summary>View numerical results</summary><div class="table-scroll"><table id="results-table"><caption class="sr-only">Per-model results from the paper</caption><thead></thead><tbody></tbody></table></div></details><p class="result-context">B<sub>p</sub> is not defined for MuMA-ToM. MindPower uses layer-averaged semantic scores rather than binary answer accuracy. See the paper for the scoring protocol.</p><noscript><p>Enable JavaScript for the interactive chart. The abstract Stage-3 means are A 73.9%, B_auto 75.7%, B_percept 88.8%, B_full 98.4%, and C 94.5%. All numerical tables are also available in the paper.</p></noscript></div></section>
-
-    <section class="container section" id="dataset"><div class="section-heading"><p class="eyebrow">Abstract 2D benchmark</p><h2>Simple scenes.<br>Demanding perspective-taking.</h2><p>20 templates, 50 variants each. Images, questions, ground-truth descriptions, and scoring aliases are included.</p></div><div class="dataset-layout"><div class="stage-list"><div><span>01</span><h3>Object tracking</h3><p>300 probes · 6 templates</p></div><div><span>02</span><h3>Goal attribution</h3><p>200 probes · 4 templates</p></div><div><span>03</span><h3>False belief</h3><p>500 probes · 10 templates</p></div><a class="text-link" href="assets/abstract2d.zip" download>Download the complete dataset ↓</a></div><div class="probe-viewer"><label for="probe-select">Explore a released example</label><select id="probe-select"></select><img id="probe-image" src="assets/s3_two_rooms_000.png" alt="Five-panel two-rooms example"><p id="probe-question"></p><details id="probe-answer"><summary>Show expected answer and description</summary><p><b>Expected answer:</b> <span id="expected-answer"></span></p><p id="probe-description"></p></details><small id="probe-id"></small></div></div></section>
-
-    <section class="reproduce-band"><div class="container section reproduce-layout"><div><p class="eyebrow">From paper to practice</p><h2>Reproduce the tables.<br>Start without an API key.</h2><p>Saved responses and per-response scores are bundled with the code. One command recomputes the tables and checks their agreement with the paper.</p><a class="text-link" href="../docs/REPRODUCE.md">Read the reproduction guide ↗</a></div><div class="code-panel"><div><span>Terminal · from the repository root</span><button class="copy-button" data-copy="quickstart">Copy</button></div><pre id="quickstart">python scripts/reproduce.py</pre><p>Writes CSV tables and a numerical verification report.</p></div></div></section>
-
-    <section class="container section citation-section" id="citation"><div class="section-heading"><p class="eyebrow">Use &amp; cite</p><h2>Build on this work.</h2><p>If you use the code, dataset, or findings, please cite the paper.</p></div><div class="bibtex-panel"><div><span>BibTeX</span><button class="copy-button" data-copy="bibtex">Copy citation</button></div><pre id="bibtex">@inproceedings{barhdadi2026perception,
+<section class="hero publication-hero">
+<div class="hero-body">
+<div class="container is-max-desktop">
+<div class="columns is-centered">
+<div class="column has-text-centered">
+<h1 class="title is-1 publication-title">Perception, Not Reasoning, Limits Visual Theory of Mind</h1>
+<div class="is-size-5 publication-authors"><span class="author-block"><a href="https://bmrayan.com/" rel="noopener" target="_blank">Mohamed Rayan Barhdadi</a><sup>1</sup>, </span>
+<span class="author-block"><a href="https://talalwasim.github.io/" rel="noopener" target="_blank">Syed Talal Wasim</a><sup>2,3</sup>, </span>
+<span class="author-block"><a href="https://pages.iai.uni-bonn.de/gall_juergen/" rel="noopener" target="_blank">Juergen Gall</a><sup>2,3</sup>, </span>
+<span class="author-block"><a href="https://scholar.google.com/citations?user=THi_ypMAAAAJ" rel="noopener" target="_blank">Erchin Serpedin</a><sup>1</sup>, </span>
+<span class="author-block"><a href="https://www.hasankurban.com/" rel="noopener" target="_blank">Hasan Kurban</a><sup>4</sup></span></div>
+<div class="is-size-6 publication-authors" style="margin-top: 0.2rem; font-weight: 600;"><span class="author-block"><sup>1</sup>Texas A&amp;M University   <sup>2</sup>University of Bonn   <sup>3</sup>Lamarr Institute for Machine Learning and Artificial Intelligence   <sup>4</sup>Hamad Bin Khalifa University</span></div>
+<div class="is-size-5 publication-authors" style="margin-top: 0.75rem;">
+<span class="author-block" style="color: #c0392b; font-weight: 600;">Accepted to NeurIPS (E&amp;D) 2026 · Oral at the BabyVLM Workshop</span>
+</div>
+<div class="column has-text-centered">
+<div class="publication-links"><span class="link-block"><a class="external-link button is-normal is-rounded is-dark" href="https://github.com/bmrayan/prv-perception#paper" rel="noopener" target="_blank"><span class="icon"><i aria-hidden="true" class="fas fa-file-pdf"></i></span><span>Paper</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded is-dark" href="https://github.com/bmrayan/prv-perception" rel="noopener" target="_blank"><span class="icon"><i aria-hidden="true" class="fab fa-github"></i></span><span>Code</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded is-dark" href="https://huggingface.co/datasets/bmrayan/perception-not-reasoning" rel="noopener" target="_blank"><span class="icon"><i aria-hidden="true" class="fas fa-download"></i></span><span>Dataset</span></a></span>
+<span class="link-block"><a class="external-link button is-normal is-rounded is-dark" href="https://github.com/bmrayan/prv-perception" rel="noopener" target="_blank"><span class="icon"><i aria-hidden="true" class="far fa-star"></i></span><span>Star</span></a></span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="hero teaser">
+<div class="container is-max-desktop">
+<div class="hero-body">
+<p style="font-size: 20px; color: black; text-align: center;">We study why vision-language models solve false-belief problems in text but struggle with the same tasks in images. Across <b>7 models</b> and <b>3 benchmark settings</b>, ground-truth scene descriptions substantially close the gap, pointing to <b>perception as the bottleneck</b>.</p>
+<figure style="margin-top: 2rem;"><a href="assets/teaser.png"><img alt="The perceptual bottleneck hypothesis and results across abstract and naturalistic theory-of-mind benchmarks." height="702" src="assets/teaser.png" style="width: 100%; height: auto;" width="1782"/></a></figure>
+</div>
+</div>
+</section>
+<section class="section" style="background: #fafafa; padding-top: 3rem; padding-bottom: 3rem;">
+<div class="container is-max-desktop">
+<div class="columns is-centered has-text-centered">
+<div class="column is-full-width">
+<h2 class="title is-3">What the Study Shows</h2>
+</div>
+</div>
+<div class="contrib-cards">
+<div class="contrib-card">
+<h4>A Perceptual Bottleneck</h4>
+<p>Ground-truth scene information substantially improves visual theory-of-mind performance across abstract panels, MuMA-ToM, and MindPower.</p>
+</div>
+<div class="contrib-card">
+<h4>Controlled Comparisons</h4>
+<p>Five input conditions keep the question fixed while varying scene information, from images alone to perceptual and full-information scaffolds.</p>
+</div>
+<div class="contrib-card">
+<h4>Measuring the Gap</h4>
+<p>The Perceptual Contribution Ratio measures how much of the visual-to-text performance gap a scaffold recovers.</p>
+</div>
+<div class="contrib-card">
+<h4>Why Parsers Fall Short</h4>
+<p>Automatic scene descriptions fail to reproduce the gains from ground-truth scaffolds. What scene information is supplied matters.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="protocol">
+<div class="container is-max-desktop">
+<h2 class="title is-3 has-text-centered">Separating Perception from Reasoning</h2>
+<div class="content"><p>The same question is evaluated with visual-only input (A), an automatic scaffold (B<sub>a</sub>), a perceptual scaffold (B<sub>p</sub>), a full-information scaffold (B<sub>f</sub>), and text-only input (C). These comparisons test how performance changes when the scene information available to the model improves.</p></div>
+<figure class="paper-figure pathways-figure"><a href="assets/evaluation-pathways.png"><img alt="Diagram of visual input, text narration, and scaffolded visual input passing through a shared reasoning module." height="2000" loading="lazy" src="assets/evaluation-pathways.png" width="1945"/></a><figcaption>Three pathways through the protocol. This is a functional model of the comparison, not a claim that the internal mechanisms are identical. <a href="https://github.com/bmrayan/prv-perception#paper">Figure S2 in the paper.</a></figcaption></figure>
+</div>
+</section><section class="section" id="results" style="background: #fafafa;">
+<div class="container is-max-desktop">
+<h2 class="title is-3 has-text-centered">Better Scene Information Improves Performance</h2>
+<div class="content"><p>Ground-truth scaffolds close the visual-to-text gap on abstract false-belief tasks and MuMA-ToM. On MindPower, the full-information scaffold recovers part of the gap. Automatic descriptions provide much smaller gains, or reduce performance.</p></div>
+<figure class="paper-figure"><div class="results-explorer" id="results-explorer">
+<div class="results-toolbar"><label>Benchmark <select id="benchmark-select"><option value="muma">MuMA-ToM</option><option value="mindpower">MindPower</option><option value="abstract">Abstract false belief</option></select></label><label>View <select id="metric-select"><option value="score">Reported score</option><option value="gain">Change from visual-only</option></select></label></div>
+<fieldset class="condition-controls"><legend>Show conditions</legend><label><input checked="" type="checkbox" value="0"/> A ? Visual-only</label><label><input checked="" type="checkbox" value="1"/> B<sub>f</sub> ? Automatic</label><label><input checked="" type="checkbox" value="2"/> B<sub>f</sub> ? Perceptual</label><label><input checked="" type="checkbox" value="3"/> B<sub>f</sub> ? Full scaffold</label><label><input checked="" type="checkbox" value="4"/> C ? Text-only</label></fieldset>
+<p aria-live="polite" class="chart-summary" id="chart-summary"></p><div aria-label="Condition scores" id="interactive-bars"></div><p aria-live="polite" class="chart-detail" id="chart-detail">Select a bar to inspect its score and change from visual-only.</p>
+<details class="chart-table"><summary>View all reported values</summary><div class="table-container"><table class="table is-fullwidth"><caption>Seven-model means (%)</caption><thead><tr><th>Setting</th><th>A</th><th>B<sub>f</sub></th><th>B<sub>f</sub></th><th>B<sub>f</sub></th><th>C</th></tr></thead><tbody><tr><th>MuMA-ToM</th><td>44.7</td><td>47.4</td><td>Not defined</td><td>58.1</td><td>54.0</td></tr><tr><th>MindPower</th><td>19.1</td><td>18.3</td><td>24.1</td><td>27.3</td><td>33.0</td></tr><tr><th>Abstract false belief</th><td>73.9</td><td>75.7</td><td>88.8</td><td>98.4</td><td>94.5</td></tr></tbody></table></div></details>
+<noscript><p>Enable JavaScript to explore the chart, or open the table above to read every value.</p></noscript></div><figcaption>Seven-model means, plotted from the rounded values reported in Tables 3–5 and Section 4. A: visual-only; B<sub>a</sub>: automatic; B<sub>p</sub>: perceptual; B<sub>f</sub>: full scaffold; C: text-only. MuMA-ToM has no B<sub>p</sub> condition. MindPower uses a scenario-weighted layer-mean score; scores should be compared within each setting. <a href="https://github.com/bmrayan/prv-perception#paper">Results in the paper.</a></figcaption></figure>
+<div class="content" style="margin-top: 1.5rem;"><p><strong>Scaffold content matters.</strong> MindPower’s B<sub>f</sub> is an oracle full-information condition containing the reference reasoning chain. Its perceptual condition B<sub>p</sub> provides a more restricted comparison, improving the mean score from 19.1 to 24.1.</p></div>
+</div>
+</section><section class="section" id="naturalistic">
+<div class="container is-max-desktop">
+<h2 class="title is-3 has-text-centered">Beyond Abstract Panels</h2>
+<div class="content"><p>The evaluation includes household videos from MuMA-ToM and embodied scenarios from MindPower. These settings introduce clutter, occlusion, and temporal changes, testing whether the same pattern extends to more complex visual inputs.</p></div>
+<figure class="paper-figure"><a href="assets/naturalistic-benchmarks.png"><img alt="MuMA-ToM household scenes in the top row and MindPower embodied scenarios in the bottom row." height="791" loading="lazy" src="assets/naturalistic-benchmarks.png" width="2000"/></a><figcaption>Representative naturalistic inputs: MuMA-ToM above, MindPower below. Evaluations use eight frames per MuMA-ToM video and twelve-frame storyboards per MindPower scenario. <a href="https://github.com/bmrayan/prv-perception#paper">Figure 3 in the paper.</a></figcaption></figure>
+</div>
+</section><section class="section" id="resources" style="padding-top: 0;">
+<div class="container is-max-desktop content">
+<h2 class="title is-3">Code and Data</h2>
+<p>The repository includes evaluation code, saved responses, and scripts for reproducing the reported results. The controlled abstract 2D stimuli are available as a supporting resource: 1,000 probes across 20 templates.</p>
+<p><a href="https://github.com/bmrayan/prv-perception">Code repository</a>  ·  <a href="https://github.com/bmrayan/prv-perception#reproduce">Reproduction guide</a>  ·  <a href="https://huggingface.co/datasets/bmrayan/perception-not-reasoning">Abstract 2D data</a>  ·  <a href="https://github.com/bmrayan/prv-perception#results">Results and protocol</a></p>
+</div>
+</section>
+<section class="section" id="BibTeX" style="padding-top: 0;">
+<div class="container is-max-desktop content">
+<h2 class="title">Cite</h2>
+<div style="position: relative;">
+<button class="copy-bib-btn" onclick="copyBib()">Copy</button>
+<pre><code id="bibtex-code">@inproceedings{barhdadi2026perception,
   title     = {Perception, Not Reasoning, Limits Visual Theory of Mind},
   author    = {Barhdadi, Mohamed Rayan and Wasim, Syed Talal and Gall, Juergen
                and Serpedin, Erchin and Kurban, Hasan},
   booktitle = {Advances in Neural Information Processing Systems},
   year      = {2026}
-}</pre></div><div class="citation-actions"><a class="text-link" href="../paper/citation.bib" download>Download .bib ↓</a><a class="button" href="https://github.com/bmrayan/prv-perception">? Star the repository</a></div><p class="copy-status" id="copy-status" role="status" aria-live="polite"></p></section>
-  </main>
-  <footer><p>Perception, Not Reasoning, Limits Visual Theory of Mind</p><p>NeurIPS 2026 · BabyVLM Workshop Oral</p><div><a href="../paper/paper.pdf">Paper</a><a href="https://github.com/bmrayan/prv-perception" data-repo>Code</a><a href="#citation">Citation</a></div></footer>
+}</code></pre>
+</div>
+</div>
+</section>
+<div class="footer"><p style="font-size: 13px; color: gray;"><a href="https://github.com/bmrayan/prv-perception#paper">Paper</a>  ·  <a href="https://github.com/bmrayan/prv-perception">Code</a>  ·  <a href="https://huggingface.co/datasets/bmrayan/perception-not-reasoning">Dataset</a></p>
+<p style="font-size: 12px; color: #aaa; margin-top: 8px;">Perception, Not Reasoning  ·  Page template from <a href="https://github.com/KurbanIntelligenceLab/iris-bench" style="color:#aaa;">IRIS-Bench</a>, inspired by <a href="https://glab-caltech.github.io/steer3d/" style="color:#aaa;">Steer3D</a>.</p></div>
+<script src="app.js"></script>
 </body>
 </html>

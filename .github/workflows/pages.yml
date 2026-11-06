@@ -30,13 +30,8 @@ jobs:
           import shutil
           target = Path('_site')
           target.mkdir()
-          shutil.copytree('website', target / 'website', ignore=shutil.ignore_patterns('source-code.zip'))
-          shutil.copytree('docs', target / 'docs')
-          (target / 'paper').mkdir()
-          for name in ('paper.pdf', 'citation.bib'):
-              shutil.copy2(Path('paper') / name, target / 'paper' / name)
-          shutil.copy2('index.html', target / 'index.html')
-          shutil.copy2('.nojekyll', target / '.nojekyll')
+          shutil.copytree('website', target / 'website')
+          (target / 'index.html').write_text('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=website/"><title>Perception, Not Reasoning</title></head><body><a href="website/">Open the project website</a></body></html>', encoding='utf-8')
           PY
       - uses: actions/upload-pages-artifact@v5.0.0
         with:

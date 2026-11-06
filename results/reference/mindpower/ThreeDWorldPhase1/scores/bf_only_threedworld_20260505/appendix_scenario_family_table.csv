@@ -1,5 +1,0 @@
-scenario_family,condition,overall_layer_mean,action_mean,format_validity_rate
-lighting_visibility,B_full,53.83921660374601,40.688846671044814,100.0
-missing_tool,B_full,35.4045851690598,20.959709759317857,100.0
-obstacle_removal,B_full,59.16167715745028,56.77741115346968,100.0
-reachability,B_full,49.9965440043541,34.4095100591119,100.0
